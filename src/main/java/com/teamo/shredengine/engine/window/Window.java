@@ -10,6 +10,8 @@ import org.lwjgl.opengl.GL11;
 
 import static org.lwjgl.glfw.Callbacks.glfwFreeCallbacks;
 import static org.lwjgl.glfw.GLFW.*;
+import static org.lwjgl.opengl.GL11.GL_FALSE;
+import static org.lwjgl.opengl.GL11.GL_TRUE;
 import static org.lwjgl.system.MemoryUtil.NULL;
 
 public class Window implements WindowType {
@@ -36,8 +38,13 @@ public class Window implements WindowType {
         }
 
         // Configure the window
-        glfwDefaultWindowHints();
-        glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+        // glfwDefaultWindowHints();
+        // glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+        glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 2);
+        glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+        glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
         // Create the window
         windowId = glfwCreateWindow(width, height, title, NULL, NULL);
@@ -69,11 +76,10 @@ public class Window implements WindowType {
             float elapsedTime = clock.getElapsedTime();
             if (elapsedTime > 0) {
                 Renderable renderable = scene.update(elapsedTime);
+                // Display the scene's renderable
                 renderer.render(renderable);
+                glfwSwapBuffers(windowId);
             }
-
-            // Display the scene
-            glfwSwapBuffers(windowId);
 
             // Update the time
             clock.tick();

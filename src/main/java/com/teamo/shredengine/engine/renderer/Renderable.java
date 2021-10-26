@@ -1,11 +1,16 @@
 package com.teamo.shredengine.engine.renderer;
 
-import com.teamo.shredengine.model.Color;
-import com.teamo.shredengine.model.Vertex;
-
-import java.util.List;
+import com.teamo.shredengine.model.Mesh;
+import com.teamo.shredengine.render.Shader;
 
 public interface Renderable {
-    List<Vertex> getVertices();
-    Color getColor();
+
+    /*
+    Renderable will have getters for:
+    -an array of meshes (geometric objects)
+    -a shader (group of programs** run on the gpu)
+    */
+
+    Mesh[] getMeshes();
+    Shader getShader();
 }
