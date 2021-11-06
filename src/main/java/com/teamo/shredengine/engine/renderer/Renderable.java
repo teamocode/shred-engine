@@ -1,7 +1,6 @@
 package com.teamo.shredengine.engine.renderer;
 
 import com.teamo.shredengine.model.Mesh;
-import com.teamo.shredengine.render.Shader;
 
 public interface Renderable {
 
@@ -12,5 +11,5 @@ public interface Renderable {
     */
 
     Mesh[] getMeshes();
-    Shader getShader();
+    ShaderProgram getShaderProgram();
 }

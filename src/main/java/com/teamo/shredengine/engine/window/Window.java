@@ -63,6 +63,9 @@ public class Window implements WindowType {
         // Prepare the clock
         clock.reset();
 
+        // Setup the scene
+        scene.setup();
+
         // Start the window loop
         while (!glfwWindowShouldClose(windowId)) {
             // Detect input state
